@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <title>Title</title>
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body>
+<main class="container">
+<h1>Dashboard deliveries</h1>
+<div>
+    <form action="#" th:action="@{/delivery}" th:object="${searchFilters}" method="get">
+        <p>ID: <input th:field="*{id}" type="text" class="form-control"></p>
+        <p>Description: <input th:field="*{description}" type="text" class="form-control"></p>
+        <p>Shipping Date: <input th:field="*{shippingDate}" type="date" class="form-control"></p>
+        <p>Min price: <input th:field="*{minPrice}" type="number" class="form-control"></p>
+        <p>Max price: <input th:field="*{maxPrice}" type="number" class="form-control"></p>
+        <p>Customer: <select th:field="*{customerId}" class="form-select">
+    	<option value="" selected> -- </option>
+    	<option th:each="customer : ${customers}" th:value="${customer.id}" th:utext="${customer.name}"/>
+    	</select></p>
+        <p><input type="submit" value="Cerca" class="btn btn-primary mb-3"/></p>
+    </form>
+</div>
+<table class='table table-striped'>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Shipping Date</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="delivery : ${deliveries}">
+        <td th:text="${delivery.id}"></td>
+        <td th:text="${delivery.description}"></td>
+        <td th:text="${delivery.shippingDate}"></td>
+        <td th:text="${delivery.price}"></td>
+        
+        <td><a th:href="@{/delivery/show/{id}(id=${delivery.id})}" class="btn btn-info">Show</a>
+        <a th:href="@{/delivery/update/{id}(id=${delivery.id})}" class="btn btn-info">Update</a>
+        <a th:href="@{/delivery/delete/{id}(id=${delivery.id})}" class="btn btn-info">Delete</a></td>
+
+    </tr>
+    <a th:href="@{/}" class="btn btn-secondary mb-3">Back</a>
+    </tbody>
+</table>
+</main>
+</body>
+</html>
