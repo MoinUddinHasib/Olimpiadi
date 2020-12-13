@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"> 
+    <title>Crea Rappresentante Nazione</title>
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body>
+<h1 class="container">Crea Rappresentante Nazione</h1>
+<form action="#" th:action="@{/rappresentanteNazione/insert}" method="post" th:object="${RappresentanteNazioneInsertDTO}" class="container">
+
+	<p>Nome: <input type="text" th:field="*{nome}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="container"></p>
+    
+    <p>Cognome: <input type="text" th:field="*{cognome}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}" class="container"></p>
+    
+    <p>Codice Fiscale: <input type="text" th:field="*{cf}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('cf')}" th:errors="*{cf}" class="container"></p>
+    
+    <p>Username: <input type="text" th:field="*{username}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="container"></p>
+    
+    <p>Password: <input type="text" th:field="*{password}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="container"></p>
+    
+    <p>Nazione: <select th:field="*{nazioneId}" class="form-select">
+    <option value="" selected> -- </option>
+    <option th:each="nazione : ${nazioni}" th:value="${nazione.id}" th:utext="${nazione.nome}"/>
+    </select></p>
+	<p style="color:red" th:if="${#fields.hasErrors('nazioneId')}" th:errors="*{nazioneId}" class="container"></p>
+	
+    <p><input type="submit" value="Crea" class="btn btn-primary mb-3"/></p>
+    <a th:href="@{/rappresentanza/home}" class="btn btn-secondary mb-3">Back</a>
+</form>
+</body>
+</html>

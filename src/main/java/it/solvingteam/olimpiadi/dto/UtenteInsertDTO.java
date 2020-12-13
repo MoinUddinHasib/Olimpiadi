@@ -21,7 +21,6 @@ public class UtenteInsertDTO {
     @NotEmpty(message = "Required field")
 	private String password;
 	
-    @NotEmpty(message = "Required field")
 	private String ruolo;
 
 

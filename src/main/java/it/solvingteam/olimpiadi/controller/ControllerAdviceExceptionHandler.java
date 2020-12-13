@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerAdviceExceptionHandler {
 
 //    private final static Logger logger = LoggerFactory.getLogger(ControllerAdviceExceptionHandler.class);
-    
+    /*
     @ExceptionHandler(DataIntegrityViolationException.class)
     public String exceptionHandler0(DataIntegrityViolationException e) {
         return "redirect:/";
@@ -25,5 +25,5 @@ public class ControllerAdviceExceptionHandler {
     public String exceptionHandler2(NumberFormatException e) {
     	return "redirect:/";
     }
-
+*/
 }

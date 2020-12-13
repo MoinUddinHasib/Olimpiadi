@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <title>Search</title>
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body>
+<main class="container">
+<h1>Dashboard Gare</h1>
+<a th:href="@{/evento/crea}" class="btn btn-info">Crea Gara</a>
+<div>
+    <form action="#" th:action="@{/gara}" th:object="${searchFilters}" method="get">
+        <p>Numero partecipanti approvati: <input th:field="*{partecipanti_approvati}" type="number" class="form-control"></p>
+        <p>Disciplina: <select th:field="*{disciplinaId}" class="form-select">
+    	<option value="" selected> Qualsiasi </option>
+    	<option th:each="disciplina : ${discipline}" th:value="${disciplina.id}" th:utext="${disciplina.nome}"/>
+    	</select></p>
+        <p>Data: <input th:field="*{data}" type="date" class="form-control"></p>
+        <p>Stato: <select th:field="*{stato}" class="form-select">
+    	<option value="" selected> Qualsiasi </option>
+    	<option th:each="stato : ${stati}" th:value="${stato}" th:utext="${stato}"/>
+    	</select></p>
+        <p>Modificatore: <input th:field="*{modificatore}" type="number" class="form-control"></p>
+        <p><input type="submit" value="Cerca" class="btn btn-primary mb-3"/></p>
+    </form>
+</div>
+<table class='table table-striped'>
+    <thead>
+    <tr>
+        <th>Numero partecipanti approvati</th>
+        <th>Disciplina</th>
+        <th>Data</th>
+        <th>Stato</th>
+        <th>Modificatore</th>
+        <th>Azione</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="gara : ${gare}">
+
+        <td th:text="${gara.partecipanti_approvati}"></td>
+        <td th:text="${gara.disciplina}"></td>
+        <td th:text="${gara.data}"></td>
+        <td th:text="${gara.stato}"></td>
+        <td th:text="${gara.modificatore}"></td>
+                
+        <td><a th:href="@{/gara/show/{id}(id=${gara.id})}" class="btn btn-info">Show</a>
+        <a th:href="@{/gara/edit/{id}(id=${gara.id})}" class="btn btn-info">Edit</a>
+        <a th:href="@{/gara/delete/{id}(id=${gara.id})}" class="btn btn-info">Delete</a>
+        <a th:href="@{/gara/avvia/{id}(id=${gara.id})}" class="btn btn-info">Avvia</a></td>
+
+    </tr>
+    <a th:href="@{/evento/home}" class="btn btn-secondary mb-3">Back</a>
+    </tbody>
+</table>
+</main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"> 
+    <title>Crea Atleta</title>
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body th:with="due=${false},tre=${false}">
+<h1 class="container">Crea Atleta</h1>
+<form action="#" th:action="@{/atleta/insert}" method="post" th:object="${AtletaInsertDTO}" class="container">
+
+	<p>Nome: <input type="text" th:field="*{nome}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="container"></p>
+    
+    <p>Cognome: <input type="text" th:field="*{cognome}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}" class="container"></p>
+    
+    <p>Codice Fiscale: <input type="text" th:field="*{cf}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('cf')}" th:errors="*{cf}" class="container"></p>
+    
+    <p>Username: <input type="text" th:field="*{username}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="container"></p>
+    
+    <p>Password: <input type="text" th:field="*{password}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="container"></p>
+    
+    <p>Prima Disciplina: <select th:field="*{disciplinaId1}" class="form-select">
+    <option value="" selected th:if="${!due}"> -- </option>
+    <option th:each="disciplina : ${discipline}" th:value="${disciplina.id}" th:utext="${disciplina.nome}"/>
+    </select></p>
+	<p style="color:red" th:if="${#fields.hasErrors('disciplinaId1')}" th:errors="*{disciplinaId1}" class="container"></p>
+	
+	<p>Seconda Disciplina: <select th:field="*{disciplinaId2}" class="form-select">
+    <option value="" selected th:if="${!tre}"> -- </option>
+    <option th:each="disciplina : ${discipline}" th:value="${disciplina.id}" th:utext="${disciplina.nome}"/>
+    </select></p>
+    
+    <p>Terza Disciplina: <select th:field="*{disciplinaId3}" class="form-select">
+    <option value="" selected> -- </option>
+    <option th:each="disciplina : ${discipline}" th:value="${disciplina.id}" th:utext="${disciplina.nome}"/>
+    </select></p>
+	
+    <p><input type="submit" value="Crea" class="btn btn-primary mb-3"/></p>
+    <a th:href="@{/rappresentanza/home}" class="btn btn-secondary mb-3">Back</a>
+</form>
+</body>
+</html>

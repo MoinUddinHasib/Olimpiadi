@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <title>Medagliere</title>
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body>
+<main class="container">
+<h1>Classifica Nazioni</h1>
+
+<table class='table table-striped'>
+    <thead>
+    <tr>
+        <th>Oro</th>
+        <th>Argento</th>
+        <th>Bronzo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="nazione : ${nazioni}">
+
+        <td th:text="${nazione.oro}"></td>
+        <td th:text="${nazione.argento}"></td>
+        <td th:text="${nazione.bronzo}"></td>
+                
+    </tr>
+    <a th:href="@{/evento/home}" class="btn btn-secondary mb-3">Back</a>
+    </tbody>
+</table>
+</main>
+</body>
+</html>

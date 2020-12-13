@@ -12,7 +12,7 @@ import it.solvingteam.olimpiadi.Util;
 //@Configuration
 //@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+/*
 //    @Autowired
 //    UserService userDetailsService;
 
@@ -38,17 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/css/**");
-    }
-
-    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     	Util.stampa(this.toString());
 //        auth
 //                .userDetailsService(userDetailsService)
 //                .passwordEncoder(passwordEncoder());
     }
-
+*/
 
 }

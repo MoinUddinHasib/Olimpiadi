@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-    <title>Gestione ordini</title>
+    <title>Homepage</title>
 <head th:insert="header.html :: header">
 <meta charset="UTF-8">
 </head>
@@ -8,11 +8,11 @@
 <div class="container" >
 <h1>Welcome</h1>
 
-<p><a th:href="@{/customer/insert}" class="btn btn-primary mb-3">Add Customer</a></p>
-<p><a th:href="@{/customer/}" class="btn btn-secondary mb-3">All Customers</a></p>
+<p><a th:href="@{/evento/home}" class="btn btn-primary mb-3">Gestione Evento</a></p>
 
-<p><a th:href="@{/delivery/insert}" class="btn btn-primary mb-3">Add Delivery</a></p>
-<p><a th:href="@{/delivery/}" class="btn btn-secondary mb-3">All Deliveries</a></p>
+<p><a th:href="@{/rappresentanza/home}" class="btn btn-primary mb-3">Gestione Rappresentanza</a></p>
+
+<p><a th:href="@{/carriera/home}" class="btn btn-primary mb-3">Gestione Carriera</a></p>
 
 </div>
 </body>

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"> 
+    <title>Crea Gara</title>
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body>
+<h1 class="container">Crea Gara</h1>
+<form action="#" th:action="@{/gara/insert}" method="post" th:object="${GaraInsertDTO}" class="container">
+
+    <p>Disciplina: <select th:field="*{disciplinaId}" class="form-select">
+    <option value="" selected> -- </option>
+    <option th:each="disciplina : ${discipline}" th:value="${disciplina.id}" th:utext="${disciplina.nome}"/>
+    </select></p>
+	<p style="color:red" th:if="${#fields.hasErrors('disciplinaId')}" th:errors="*{disciplinaId}" class="container"></p>
+	
+    <p>Modificatore: <input type="number" th:field="*{modificatore}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('modificatore')}" th:errors="*{modificatore}" class="container"></p>
+
+    <p><input type="submit" value="Crea" class="btn btn-primary mb-3"/></p>
+    <a th:href="@{/evento/home}" class="btn btn-secondary mb-3">Back</a>
+</form>
+</body>
+</html>
