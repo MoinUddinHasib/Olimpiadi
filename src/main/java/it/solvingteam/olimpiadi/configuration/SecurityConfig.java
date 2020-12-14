@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 import it.solvingteam.olimpiadi.service.UtenteService;
 
@@ -29,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/auth/signup")                    .permitAll()
+//                    .antMatchers("/auth/signup")                    .permitAll()
                     .anyRequest()                    .authenticated()
                 .and()
                 .formLogin()
@@ -38,6 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .failureUrl("/auth/signin?loginError")
                     .defaultSuccessUrl("/")
                 .permitAll();
+   
+        http
+        .logout(logout -> logout
+          .addLogoutHandler(new SecurityContextLogoutHandler()).logoutSuccessUrl("/"));
     }
 
     @Override
