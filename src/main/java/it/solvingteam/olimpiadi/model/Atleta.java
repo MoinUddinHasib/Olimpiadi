@@ -1,5 +1,6 @@
 package it.solvingteam.olimpiadi.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Atleta extends Utente {
@@ -24,7 +26,7 @@ public class Atleta extends Utente {
 	@JoinTable(name = "atleta_disciplina",
 	joinColumns = @JoinColumn(name = "atleta_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "disciplina_id", referencedColumnName = "id"))
-	private Set<Disciplina> discipline;
+	private Set<Disciplina> discipline = new HashSet<>();
 	
 	private Integer punti_totale;
 	
@@ -37,9 +39,8 @@ public class Atleta extends Utente {
 	@Enumerated(EnumType.STRING)
 	private Stato stato;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "atleta_fk_gara")
-	private Gara gara;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "atleta")
+	private Set<AtletaGara> gare = new HashSet<>();
 
 	public RappresentanteNazione getRappresentante() {
 		return rappresentante;
@@ -97,12 +98,13 @@ public class Atleta extends Utente {
 		this.stato = stato;
 	}
 
-	public Gara getGara() {
-		return gara;
+	public Set<AtletaGara> getGare() {
+		return gare;
 	}
 
-	public void setGara(Gara gara) {
-		this.gara = gara;
+	public void setGare(Set<AtletaGara> gare) {
+		this.gare = gare;
 	}
+
 
 }

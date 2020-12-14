@@ -1,6 +1,7 @@
 package it.solvingteam.olimpiadi.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class Gara {
 	private Disciplina disciplina;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "gara")
-	private Set<Atleta> partecipanti;
+	private Set<AtletaGara> atleti = new HashSet<>();
 	
 	private LocalDate data;
 	
@@ -63,12 +64,12 @@ public class Gara {
 		this.disciplina = disciplina;
 	}
 
-	public Set<Atleta> getPartecipanti() {
-		return partecipanti;
+	public Set<AtletaGara> getAtleti() {
+		return atleti;
 	}
 
-	public void setPartecipanti(Set<Atleta> partecipanti) {
-		this.partecipanti = partecipanti;
+	public void setAtleti(Set<AtletaGara> atleti) {
+		this.atleti = atleti;
 	}
 
 	public LocalDate getData() {

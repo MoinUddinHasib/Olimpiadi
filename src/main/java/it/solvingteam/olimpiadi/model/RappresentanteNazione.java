@@ -1,5 +1,6 @@
 package it.solvingteam.olimpiadi.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ public class RappresentanteNazione extends Utente {
 	private Nazione nazione;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rappresentante")
-	private Set<Atleta> atleti;
+	private Set<Atleta> atleti = new HashSet<>();
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rappresentante_fk_organizzatore")

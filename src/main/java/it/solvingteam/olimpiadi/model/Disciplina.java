@@ -1,5 +1,6 @@
 package it.solvingteam.olimpiadi.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ public class Disciplina {
     private String nome;
     
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "discipline")
-    private Set<Atleta> atleti;
+    private Set<Atleta> atleti =new HashSet<>();
 
 	public Integer getId() {
 		return id;

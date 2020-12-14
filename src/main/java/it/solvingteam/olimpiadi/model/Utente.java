@@ -1,5 +1,6 @@
 package it.solvingteam.olimpiadi.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class Utente {
 	private Ruolo ruolo;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "organizzatore")
-	private Set<RappresentanteNazione> rappresentanti;
+	private Set<RappresentanteNazione> rappresentanti = new HashSet<>();
 
 	public Integer getId() {
 		return id;
