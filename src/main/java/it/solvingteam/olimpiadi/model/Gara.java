@@ -26,6 +26,8 @@ public class Gara {
 	
 	private Integer partecipanti_approvati;
 	
+	private Integer numero_partecipanti;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "gara_fk_disciplina")
 	private Disciplina disciplina;
@@ -94,6 +96,14 @@ public class Gara {
 
 	public void setModificatore(Integer modificatore) {
 		this.modificatore = modificatore;
+	}
+
+	public Integer getNumero_partecipanti() {
+		return numero_partecipanti;
+	}
+
+	public void setNumero_partecipanti(Integer numero_partecipanti) {
+		this.numero_partecipanti = numero_partecipanti;
 	}
 
 }

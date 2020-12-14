@@ -1,12 +1,18 @@
 package it.solvingteam.olimpiadi.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 public class GaraInsertDTO {
 	
-	private Integer id;
+	private String id;
 	
-	private Integer partecipanti_approvati;
+	private String partecipanti_approvati;
+	
+	@Min(value = 4, message = "Minimo quattro partecipanti")
+    @Max(value = 8, message = "Massimo otto partecipanti")
+	private Integer numero_partecipanti;
 	
 	@NotEmpty(message = "Required field")
 	private String disciplinaId;
@@ -18,20 +24,28 @@ public class GaraInsertDTO {
 	@NotEmpty(message = "Required field")
 	private String modificatore;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Integer getPartecipanti_approvati() {
+	public String getPartecipanti_approvati() {
 		return partecipanti_approvati;
 	}
 
-	public void setPartecipanti_approvati(Integer partecipanti_approvati) {
+	public void setPartecipanti_approvati(String partecipanti_approvati) {
 		this.partecipanti_approvati = partecipanti_approvati;
+	}
+
+	public Integer getNumero_partecipanti() {
+		return numero_partecipanti;
+	}
+
+	public void setNumero_partecipanti(Integer numero_partecipanti) {
+		this.numero_partecipanti = numero_partecipanti;
 	}
 
 	public String getDisciplinaId() {

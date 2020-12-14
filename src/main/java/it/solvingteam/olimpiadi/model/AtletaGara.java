@@ -11,14 +11,10 @@ public class AtletaGara {
 	@EmbeddedId
     private AtletaGaraId id = new AtletaGaraId();
 	
-	
-//	@JoinColumn(name = "id_atleta")
 	@ManyToOne
 	@MapsId("idAtleta")
 	private Atleta atleta;
 	
-	
-//	@JoinColumn(name = "id_gara")
 	@ManyToOne
 	@MapsId("idGara")
 	private Gara gara;

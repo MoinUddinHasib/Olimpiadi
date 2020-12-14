@@ -12,10 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import it.solvingteam.olimpiadi.service.UtenteService;
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-/*
+
     @Autowired
     UtenteService utenteDetailsService;
 
@@ -47,5 +47,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-*/
+
 }

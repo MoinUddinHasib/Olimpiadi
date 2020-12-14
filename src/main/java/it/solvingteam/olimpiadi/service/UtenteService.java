@@ -1,28 +1,33 @@
 package it.solvingteam.olimpiadi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import it.solvingteam.olimpiadi.Util;
 import it.solvingteam.olimpiadi.dto.UtenteInsertDTO;
 import it.solvingteam.olimpiadi.dto.UtenteSearchFilterDTO;
 import it.solvingteam.olimpiadi.mapper.UtenteMapper;
+import it.solvingteam.olimpiadi.model.UserPrincipal;
 import it.solvingteam.olimpiadi.model.Utente;
 import it.solvingteam.olimpiadi.repository.UtenteRepository;
 
 @Service
-public class UtenteService {
+public class UtenteService implements UserDetailsService {
 	
 	@Autowired
-    private UtenteRepository atletaRepository;
+    private UtenteRepository utenteRepository;
 	
     @Autowired
     private UtenteMapper atletaMapper;
 	
     public List<UtenteInsertDTO> findAll() {
-        List<Utente> allAtleti = this.atletaRepository.findAll();
+        List<Utente> allAtleti = this.utenteRepository.findAll();
         return atletaMapper.convertEntityToDto(allAtleti);
     }
     
@@ -92,6 +97,24 @@ public class UtenteService {
     	
     	Util.stampa(this.toString());
     	return null;
+    }
+    
+    public long count() {
+        return this.utenteRepository.count();
+    }
+    
+    public Utente save(Utente role) {
+        return this.utenteRepository.save(role);
+    }
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Utente utente = utenteRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return new UserPrincipal(utente);
+	}
+	
+    public Optional<Utente> findUserByUSername(String username) {
+        return utenteRepository.findByUsername(username);
     }
 
 }
