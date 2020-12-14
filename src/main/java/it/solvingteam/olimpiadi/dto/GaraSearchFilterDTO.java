@@ -2,7 +2,7 @@ package it.solvingteam.olimpiadi.dto;
 
 public class GaraSearchFilterDTO {
 	
-	private String partecipanti_approvati;
+	private String numero_partecipanti;
 	
 	private String disciplinaId;
     
@@ -13,11 +13,11 @@ public class GaraSearchFilterDTO {
 	private String modificatore;
 
 	public String getPartecipanti_approvati() {
-		return partecipanti_approvati;
+		return numero_partecipanti;
 	}
 
-	public void setPartecipanti_approvati(String partecipanti_approvati) {
-		this.partecipanti_approvati = partecipanti_approvati;
+	public void setPartecipanti_approvati(String numero_partecipanti) {
+		this.numero_partecipanti = numero_partecipanti;
 	}
 
 	public String getDisciplinaId() {

@@ -10,7 +10,7 @@
 <a th:href="@{/evento/crea}" class="btn btn-info">Crea Gara</a>
 <div>
     <form action="#" th:action="@{/gara}" th:object="${searchFilters}" method="get">
-        <p>Numero partecipanti approvati: <input th:field="*{partecipanti_approvati}" type="number" class="form-control"></p>
+        <p>Numero partecipanti: <input th:field="*{numero_partecipanti}" type="number" class="form-control"></p>
         <p>Disciplina: <select th:field="*{disciplinaId}" class="form-select">
     	<option value="" selected> Qualsiasi </option>
     	<option th:each="disciplina : ${discipline}" th:value="${disciplina.id}" th:utext="${disciplina.nome}"/>

@@ -24,8 +24,6 @@ public class Gara {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	private Integer partecipanti_approvati;
-	
 	private Integer numero_partecipanti;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -48,14 +46,6 @@ public class Gara {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getPartecipanti_approvati() {
-		return partecipanti_approvati;
-	}
-
-	public void setPartecipanti_approvati(Integer partecipanti_approvati) {
-		this.partecipanti_approvati = partecipanti_approvati;
 	}
 
 	public Disciplina getDisciplina() {
