@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1 class="container">Crea Gara</h1>
-<form action="#" th:action="@{/gara/insert}" method="post" th:object="${GaraInsertDTO}" class="container">
+<form action="#" th:action="@{/gara/crea}" method="post" th:object="${garaInsertDTO}" class="container">
 
 	<p>Numero Partecipanti: <input type="number" th:field="*{numero_partecipanti}" class="form-control"/></p>
     <p style="color:red" th:if="${#fields.hasErrors('numero_partecipanti')}" th:errors="*{numero_partecipanti}" class="container"></p>
@@ -21,7 +21,7 @@
     <p style="color:red" th:if="${#fields.hasErrors('modificatore')}" th:errors="*{modificatore}" class="container"></p>
 
     <p><input type="submit" value="Crea" class="btn btn-primary mb-3"/></p>
-    <a th:href="@{/evento/home}" class="btn btn-secondary mb-3">Back</a>
+    <a th:href="@{/gara/}" class="btn btn-secondary mb-3">Back</a>
 </form>
 </body>
 </html>

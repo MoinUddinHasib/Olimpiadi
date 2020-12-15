@@ -2,7 +2,6 @@ package it.solvingteam.olimpiadi.mapper;
 
 import org.springframework.stereotype.Component;
 
-import it.solvingteam.olimpiadi.Util;
 import it.solvingteam.olimpiadi.dto.DisciplinaInsertDTO;
 import it.solvingteam.olimpiadi.model.Disciplina;
 
@@ -13,16 +12,12 @@ public class DisciplinaMapper extends AbstractMapper<Disciplina, DisciplinaInser
         if (entity == null) {
             return null;
         }
+        
+        DisciplinaInsertDTO disciplinaDTO = new DisciplinaInsertDTO();
+        disciplinaDTO.setId(entity.getId().toString());
+        disciplinaDTO.setNome(entity.getNome());
 
-//        CustomerDto customerDto = new CustomerDto();
-//        customerDto.setId(String.valueOf(entity.getId()));
-//        customerDto.setName(entity.getName());
-//        customerDto.setAddress(entity.getAddress());
-//        customerDto.setMobile(entity.getMobile());
-//        customerDto.setSize(String.valueOf(entity.getDeliveries().size()));
-//        
-        Util.stampa(this.toString());
-        return null;
+        return disciplinaDTO;
     }
 
     @Override
@@ -30,18 +25,15 @@ public class DisciplinaMapper extends AbstractMapper<Disciplina, DisciplinaInser
         if (dto == null) {
             return null;
         }
+        
+        Disciplina disciplina = new Disciplina();
+        
+        if (dto.getId() != null) {
+        	disciplina.setId(Integer.valueOf(dto.getId()));
+        }
+        
+        disciplina.setNome(dto.getNome());
 
-//        Customer customer = new Customer();
-//
-//        if (dto.getId() != null) {
-//            customer.setId(Integer.valueOf(dto.getId()));
-//        }
-//
-//        customer.setName(dto.getName());
-//        customer.setAddress(dto.getAddress());
-//        customer.setMobile(dto.getMobile());
-//
-        Util.stampa(this.toString());
-        return null;
+        return disciplina;
     }
 }

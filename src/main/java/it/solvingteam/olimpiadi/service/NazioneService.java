@@ -93,5 +93,13 @@ public class NazioneService {
     	Util.stampa(this.toString());
     	return null;
     }
+    
+    public long count() {
+        return this.nazioneRepository.count();
+    }
+    
+    public Nazione save(Nazione role) {
+        return this.nazioneRepository.save(role);
+    }
 
 }

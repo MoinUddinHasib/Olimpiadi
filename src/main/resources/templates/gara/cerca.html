@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-    <title>Search</title>
+   <!--  <title>Search</title> -->
 <head th:insert="fragments/../header.html :: header">
 	<meta charset="UTF-8">
 </head>
 <body>
+	<div th:insert="navbar.html :: navbar"></div>
 <main class="container">
 <h1>Dashboard Gare</h1>
-<a th:href="@{/evento/crea}" class="btn btn-info">Crea Gara</a>
+<a th:href="@{/gara/crea}" class="btn btn-info">Crea Gara</a>
 <div>
     <form action="#" th:action="@{/gara}" th:object="${searchFilters}" method="get">
         <p>Numero partecipanti: <input th:field="*{numero_partecipanti}" type="number" class="form-control"></p>
@@ -27,8 +28,7 @@
 <table class='table table-striped'>
     <thead>
     <tr>
-        <th>Numero partecipanti approvati</th>
-        <th>Disciplina</th>
+        <th>Numero partecipanti</th>
         <th>Data</th>
         <th>Stato</th>
         <th>Modificatore</th>
@@ -38,8 +38,7 @@
     <tbody>
     <tr th:each="gara : ${gare}">
 
-        <td th:text="${gara.partecipanti_approvati}"></td>
-        <td th:text="${gara.disciplina}"></td>
+        <td th:text="${gara.numero_partecipanti}"></td>
         <td th:text="${gara.data}"></td>
         <td th:text="${gara.stato}"></td>
         <td th:text="${gara.modificatore}"></td>
@@ -50,7 +49,7 @@
         <a th:href="@{/gara/avvia/{id}(id=${gara.id})}" class="btn btn-info">Avvia</a></td>
 
     </tr>
-    <a th:href="@{/evento/home}" class="btn btn-secondary mb-3">Back</a>
+    <a th:href="@{/gara/home}" class="btn btn-secondary mb-3">Back</a>
     </tbody>
 </table>
 </main>

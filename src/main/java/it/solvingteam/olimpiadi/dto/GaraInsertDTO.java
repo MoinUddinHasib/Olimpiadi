@@ -3,13 +3,13 @@ package it.solvingteam.olimpiadi.dto;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class GaraInsertDTO {
 	
 	private String id;
 	
-	private String partecipanti_approvati;
-	
+	@NotNull(message = "Required field")
 	@Min(value = 4, message = "Minimo quattro partecipanti")
     @Max(value = 8, message = "Massimo otto partecipanti")
 	private Integer numero_partecipanti;
@@ -30,14 +30,6 @@ public class GaraInsertDTO {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getPartecipanti_approvati() {
-		return partecipanti_approvati;
-	}
-
-	public void setPartecipanti_approvati(String partecipanti_approvati) {
-		this.partecipanti_approvati = partecipanti_approvati;
 	}
 
 	public Integer getNumero_partecipanti() {

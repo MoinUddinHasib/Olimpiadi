@@ -22,8 +22,8 @@ public class DisciplinaService {
     private DisciplinaMapper disciplinaMapper;
 	
     public List<DisciplinaInsertDTO> findAll() {
-        List<Disciplina> allAtleti = this.disciplinaRepository.findAll();
-        return disciplinaMapper.convertEntityToDto(allAtleti);
+        List<Disciplina> allDiscipline = this.disciplinaRepository.findAll();
+        return disciplinaMapper.convertEntityToDto(allDiscipline);
     }
     
     public List<DisciplinaInsertDTO> findBySearchParameter(DisciplinaSearchFilterDTO disciplinaSearchFilterDto) {
@@ -92,6 +92,14 @@ public class DisciplinaService {
     	
     	Util.stampa(this.toString());
     	return null;
+    }
+
+    public long count() {
+        return this.disciplinaRepository.count();
+    }
+    
+    public Disciplina save(Disciplina role) {
+        return this.disciplinaRepository.save(role);
     }
 
 }

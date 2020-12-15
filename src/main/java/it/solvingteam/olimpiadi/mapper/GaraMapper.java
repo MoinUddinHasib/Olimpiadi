@@ -13,16 +13,16 @@ public class GaraMapper extends AbstractMapper<Gara, GaraInsertDTO> {
         if (entity == null) {
             return null;
         }
+        
+        GaraInsertDTO garaDTO = new GaraInsertDTO();
+        garaDTO.setId(String.valueOf(entity.getId()));
+        garaDTO.setNumero_partecipanti(entity.getNumero_partecipanti());
+        garaDTO.setDisciplinaId(entity.getDisciplina().getId().toString());
+        garaDTO.setData(entity.getData().toString());
+        garaDTO.setStato(entity.getStato().toString());
+        garaDTO.setModificatore(entity.getModificatore().toString());
 
-//        CustomerDto customerDto = new CustomerDto();
-//        customerDto.setId(String.valueOf(entity.getId()));
-//        customerDto.setName(entity.getName());
-//        customerDto.setAddress(entity.getAddress());
-//        customerDto.setMobile(entity.getMobile());
-//        customerDto.setSize(String.valueOf(entity.getDeliveries().size()));
-//        
-        Util.stampa(this.toString());
-        return null;
+        return garaDTO;
     }
 
     @Override
@@ -30,17 +30,16 @@ public class GaraMapper extends AbstractMapper<Gara, GaraInsertDTO> {
         if (dto == null) {
             return null;
         }
+        
+        Gara gara = new Gara();
+        if (dto.getId() != null) {
+        	gara.setId(Integer.valueOf(dto.getId()));
+        }
+        
+//        gara.setNumero_partecipanti(dto.getNumero_partecipanti());
+//        gara.setDisciplina(dto.getDisciplinaId());
+//        ...
 
-//        Customer customer = new Customer();
-//
-//        if (dto.getId() != null) {
-//            customer.setId(Integer.valueOf(dto.getId()));
-//        }
-//
-//        customer.setName(dto.getName());
-//        customer.setAddress(dto.getAddress());
-//        customer.setMobile(dto.getMobile());
-//
         Util.stampa(this.toString());
         return null;
     }

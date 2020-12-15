@@ -12,11 +12,11 @@ public class GaraSearchFilterDTO {
     
 	private String modificatore;
 
-	public String getPartecipanti_approvati() {
+	public String getNumero_partecipanti() {
 		return numero_partecipanti;
 	}
 
-	public void setPartecipanti_approvati(String numero_partecipanti) {
+	public void setNumero_partecipanti(String numero_partecipanti) {
 		this.numero_partecipanti = numero_partecipanti;
 	}
 
