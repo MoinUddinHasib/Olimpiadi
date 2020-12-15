@@ -11,12 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import it.solvingteam.olimpiadi.dto.AtletaGaraDTO;
 import it.solvingteam.olimpiadi.dto.DisciplinaInsertDTO;
 import it.solvingteam.olimpiadi.dto.GaraInsertDTO;
 import it.solvingteam.olimpiadi.dto.GaraSearchFilterDTO;
+import it.solvingteam.olimpiadi.service.AtletaService;
 import it.solvingteam.olimpiadi.service.DisciplinaService;
 import it.solvingteam.olimpiadi.service.GaraService;
 
@@ -28,7 +31,30 @@ public class GaraController {
     private GaraService garaService;
 	
 	@Autowired
+    private AtletaService atletaService;
+	
+	@Autowired
     private DisciplinaService disciplinaService;
+	
+    @GetMapping("autorizza/{id}")
+    public String update(@PathVariable("id") Integer id, Model model) {
+//    	CustomerInsertDto customer = customerService.getById(id);
+//        model.addAttribute("customerUpdateModel",customer);
+
+//    	System.err.println(id);
+//        return "redirect:/gara/show/"+idg;
+    	return "redirect:/gara/";
+    }
+	
+    @GetMapping("show/{id}")
+    public String show(@PathVariable("id") Integer id, Model model) {
+    	GaraInsertDTO garadto = garaService.getById(id);
+    	List<AtletaGaraDTO> atletig= atletaService.findAtletaGaraByGaraId(id);
+    	
+    	model.addAttribute("atletig", atletig);
+        model.addAttribute("gara",garadto);
+        return "gara/show";
+    }
 	
     @PostMapping("crea")
     public String crea(@Valid @ModelAttribute("garaInsertDTO") GaraInsertDTO garainsertDTO, BindingResult bindingResult, Model model){

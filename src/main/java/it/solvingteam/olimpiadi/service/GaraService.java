@@ -101,16 +101,17 @@ public class GaraService {
     }
 
     public GaraInsertDTO getById(Integer id) {
-//    	Gara c=this.garaRepository.findById(id).orElse(null);
-//    	GaraInsertDto cdto=new GaraInsertDto();
-//    	cdto.setId(c.getId().toString());
-//    	cdto.setName(c.getName());
-//    	cdto.setMobile(c.getMobile());
-//    	cdto.setAddress(c.getAddress());
-//    	return c==null?null:cdto;
-    	
-    	Util.stampa(this.toString());
-    	return null;
+    	Gara g=this.garaRepository.findById(id).orElse(null);
+    	GaraInsertDTO gdto=new GaraInsertDTO();
+    	gdto.setId(g.getId().toString());
+    	gdto.setNumero_partecipanti(g.getNumero_partecipanti());
+    	gdto.setDisciplinaId(g.getDisciplina().getNome());
+    	gdto.setData(g.getData().toString());
+    	gdto.setStato(g.getStato().toString());
+    	gdto.setModificatore(g.getModificatore().toString());
+
+    	return g==null?null:gdto;
+
     }
 
 }

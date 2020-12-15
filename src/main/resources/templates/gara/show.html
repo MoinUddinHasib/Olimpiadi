@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <title>Dettaglio Gara</title>
+    
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div th:insert="navbar.html :: navbar"></div>
+<main class="container">
+
+	<main role="main" class="container">
+
+		
+		<div class='card'>
+		    <div class='card-header'>
+		        <h1>Dettaglio Gara</h1>
+		    </div>
+		    
+		
+		    <div class='card-body'>
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Numero partecipanti:</dt>
+				  <dd class="col-sm-9" th:text="${gara.numero_partecipanti}"></dd>
+		    	</dl>
+		    	
+		    	 <dl class="row">
+				  <dt class="col-sm-3 text-right">Disciplina:</dt>
+				  <dd class="col-sm-9" th:text="${gara.disciplinaId}"></dd>
+		    	</dl>
+		    	
+ 		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Data:</dt>
+				  <dd class="col-sm-9" th:text="${gara.data}"></dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Stato:</dt>
+				  <dd class="col-sm-9" th:text="${gara.stato}"></dd>
+		    	</dl> 
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Modificatore:</dt>
+				  <dd class="col-sm-9" th:text="${gara.modificatore}"></dd>
+		    	</dl>  
+		    	
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Atleti:</dt>
+				  <dd class="col-sm-9">
+				  
+				  <ul th:each="atleta : ${atletig}">
+   						 <li>
+   						 <div th:text="${atleta.nome + ' ' + atleta.cognome}" style="float:left"></div>
+   						 <span style="clear:bot"><a th:href="@{/gara/autorizza/{id}(id=${atleta.id})}" class="btn btn-info" th:if="${(atleta.stato == 'IN_VALUTAZIONE') || (atleta.stato == 'DISAPPROVATO')}">Autorizza</a></span>
+   						 <span style="clear:bot"><a th:href="@{/gara/nonautorizza/{id}(id=${atleta.id})}" class="btn btn-info" th:if="${(atleta.stato == 'IN_VALUTAZIONE') || (atleta.stato == 'APPROVATO')}">Non Autorizza</a></span>
+   						 </li>
+   						 
+				  </ul>
+
+					</dd>
+		    	</dl>
+
+ 		    	
+		    	<a th:href="@{/gara}" class="btn btn-secondary mb-3">Back</a>
+		    	
+		    </div>
+		    
+		</div>	
+	
+	
+	</main>
+
+</main>
+</body>
+</html>

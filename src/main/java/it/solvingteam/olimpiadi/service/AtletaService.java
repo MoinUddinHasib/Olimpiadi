@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.solvingteam.olimpiadi.Util;
+import it.solvingteam.olimpiadi.dto.AtletaGaraDTO;
 import it.solvingteam.olimpiadi.dto.AtletaInsertDTO;
 import it.solvingteam.olimpiadi.dto.AtletaSearchFilterDTO;
+import it.solvingteam.olimpiadi.mapper.AtletaGaraMapper;
 import it.solvingteam.olimpiadi.mapper.AtletaMapper;
 import it.solvingteam.olimpiadi.model.Atleta;
+import it.solvingteam.olimpiadi.model.AtletaGara;
 import it.solvingteam.olimpiadi.repository.AtletaRepository;
 
 @Service
@@ -17,6 +20,9 @@ public class AtletaService {
 	
 	@Autowired
     private AtletaRepository atletaRepository;
+	
+	@Autowired
+    private AtletaGaraMapper atletaGaraMapper;
 	
     @Autowired
     private AtletaMapper atletaMapper;
@@ -54,6 +60,11 @@ public class AtletaService {
     	Util.stampa(this.toString());
     	return null;
     }
+    
+	public List<AtletaGaraDTO> findAtletaGaraByGaraId(Integer id) {
+		List<AtletaGara> Atletig = this.atletaRepository.findAllAtletaGaraByGaraId(id);
+		return atletaGaraMapper.convertEntityToDto(Atletig);
+	}
     
     public Atleta insert(AtletaInsertDTO customerinsertDto) {
 //    	String id= customerinsertDto.getId();
@@ -93,5 +104,7 @@ public class AtletaService {
     	Util.stampa(this.toString());
     	return null;
     }
+
+
 
 }

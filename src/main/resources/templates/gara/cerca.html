@@ -29,6 +29,7 @@
     <thead>
     <tr>
         <th>Numero partecipanti</th>
+        <th>Disciplina</th>
         <th>Data</th>
         <th>Stato</th>
         <th>Modificatore</th>
@@ -39,6 +40,7 @@
     <tr th:each="gara : ${gare}">
 
         <td th:text="${gara.numero_partecipanti}"></td>
+        <td th:text="${gara.disciplinaId}"></td>
         <td th:text="${gara.data}"></td>
         <td th:text="${gara.stato}"></td>
         <td th:text="${gara.modificatore}"></td>

@@ -17,7 +17,7 @@ public class GaraMapper extends AbstractMapper<Gara, GaraInsertDTO> {
         GaraInsertDTO garaDTO = new GaraInsertDTO();
         garaDTO.setId(String.valueOf(entity.getId()));
         garaDTO.setNumero_partecipanti(entity.getNumero_partecipanti());
-        garaDTO.setDisciplinaId(entity.getDisciplina().getId().toString());
+        garaDTO.setDisciplinaId(entity.getDisciplina().getNome().toString());
         garaDTO.setData(entity.getData().toString());
         garaDTO.setStato(entity.getStato().toString());
         garaDTO.setModificatore(entity.getModificatore().toString());
