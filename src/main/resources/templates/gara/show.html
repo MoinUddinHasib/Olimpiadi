@@ -52,8 +52,8 @@
 				  <ul th:each="atleta : ${atletig}">
    						 <li>
    						 <div th:text="${atleta.nome + ' ' + atleta.cognome}" style="float:left"></div>
-   						 <span style="clear:bot"><a th:href="@{/gara/autorizza/{id}(id=${atleta.id})}" class="btn btn-info" th:if="${(atleta.stato == 'IN_VALUTAZIONE') || (atleta.stato == 'DISAPPROVATO')}">Autorizza</a></span>
-   						 <span style="clear:bot"><a th:href="@{/gara/nonautorizza/{id}(id=${atleta.id})}" class="btn btn-info" th:if="${(atleta.stato == 'IN_VALUTAZIONE') || (atleta.stato == 'APPROVATO')}">Non Autorizza</a></span>
+   						 <span style="clear:bot"><a th:href="@{/gara/autorizza/{ida}/{idg}(ida=${atleta.ida},idg=${atleta.idg})}" class="btn btn-info" th:if="${(atleta.stato == 'IN_VALUTAZIONE') || (atleta.stato == 'DISAPPROVATO')}">Autorizza</a></span>
+   						 <span style="clear:bot"><a th:href="@{/gara/nonautorizza/{ida}/{idg}(ida=${atleta.ida},idg=${atleta.idg})}" class="btn btn-info" th:if="${(atleta.stato == 'IN_VALUTAZIONE') || (atleta.stato == 'APPROVATO')}">Non Autorizza</a></span>
    						 </li>
    						 
 				  </ul>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">   
+    <title>Update Gara</title>
+    
+<head th:insert="fragments/../header.html :: header">
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div th:insert="navbar.html :: navbar"></div>
+<main class="container">
+<h1>Update Gara</h1>
+<form action="#" th:action="@{/gara/update/{id}(id=*{id})}" method="post" th:object="${garaUpdate}">
+
+    <input type="hidden" th:field="*{disciplinaId}" class="form-control">
+
+	<p>Numero Partecipanti: <input type="number" th:field="*{numero_partecipanti}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('numero_partecipanti')}" th:errors="*{numero_partecipanti}" class="container"></p>
+    
+    <p>Data: <input type="date" th:field="*{data}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('data')}" th:errors="*{data}" class="container"></p>
+	
+    <p>Modificatore: <input type="number" th:field="*{modificatore}" class="form-control"/></p>
+    <p style="color:red" th:if="${#fields.hasErrors('modificatore')}" th:errors="*{modificatore}" class="container"></p>
+
+    <p><input type="submit" value="Aggiorna" class="btn btn-primary mb-3"/></p>
+    <a th:href="@{/gara/}" class="btn btn-secondary mb-3">Back</a>
+</form>
+</main>
+</body>
+</html>

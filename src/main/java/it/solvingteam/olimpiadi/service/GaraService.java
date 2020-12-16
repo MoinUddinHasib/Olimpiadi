@@ -13,7 +13,6 @@ import javax.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.solvingteam.olimpiadi.Util;
 import it.solvingteam.olimpiadi.dto.GaraInsertDTO;
 import it.solvingteam.olimpiadi.dto.GaraSearchFilterDTO;
 import it.solvingteam.olimpiadi.mapper.GaraMapper;
@@ -86,32 +85,39 @@ public class GaraService {
     	gara.setNumero_partecipanti(numero_partecipanti);
     	gara.setDisciplina(disciplinaRepository.findById(Integer.parseInt(disciplinaId)).orElse(null));
     	gara.setModificatore(Integer.parseInt(modificatore));
-    	gara.setData(LocalDate.now());
     	gara.setStato(Gara.Stato.CREATA);
         return this.garaRepository.save(gara);
 
     }
     
-    public void delete(GaraInsertDTO garaInsertDTO) {
-//    	String id= garaInsertDTO.getId();
-//    	Gara gara=garaRepository.findById(Integer.parseInt(id)).orElse(null);
-//        this.garaRepository.delete(gara);
+    public Gara update(GaraInsertDTO garaInsertDTO) {
+    	String id= garaInsertDTO.getId();
+    	Integer numero_partecipanti= garaInsertDTO.getNumero_partecipanti();
+    	String disciplinaId= garaInsertDTO.getDisciplinaId();
+    	String modificatore= garaInsertDTO.getModificatore();
+    	String data = garaInsertDTO.getData();
+    	String stato = garaInsertDTO.getStato();
+    	Gara gara = new Gara();
+    	if(id!=null) {
+    		gara.setId(Integer.parseInt(id));
+    	}
+    	gara.setNumero_partecipanti(numero_partecipanti);
+    	gara.setDisciplina(disciplinaRepository.findById(Integer.parseInt(disciplinaId)).orElse(null));
+    	gara.setModificatore(Integer.parseInt(modificatore));
     	
-    	Util.stampa(this.toString());
+    	if(data!=null && !data.isEmpty()) {
+        	gara.setData(LocalDate.parse(data));
+    	}else {
+    		gara.setData(null);
+    	}
+
+    	gara.setStato(Gara.Stato.valueOf(stato));
+        return this.garaRepository.save(gara);
+
     }
 
     public GaraInsertDTO getById(Integer id) {
-    	Gara g=this.garaRepository.findById(id).orElse(null);
-    	GaraInsertDTO gdto=new GaraInsertDTO();
-    	gdto.setId(g.getId().toString());
-    	gdto.setNumero_partecipanti(g.getNumero_partecipanti());
-    	gdto.setDisciplinaId(g.getDisciplina().getNome());
-    	gdto.setData(g.getData().toString());
-    	gdto.setStato(g.getStato().toString());
-    	gdto.setModificatore(g.getModificatore().toString());
-
-    	return g==null?null:gdto;
-
+    	return garaMapper.convertEntityToDto(this.garaRepository.findById(id).orElse(null));
     }
 
 }

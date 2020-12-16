@@ -81,17 +81,8 @@ public class DisciplinaService {
     	Util.stampa(this.toString());
     }
 
-    public DisciplinaInsertDTO getById(Integer id) {
-//    	Disciplina c=this.customerRepository.findById(id).orElse(null);
-//    	DisciplinaInsertDto cdto=new DisciplinaInsertDto();
-//    	cdto.setId(c.getId().toString());
-//    	cdto.setName(c.getName());
-//    	cdto.setMobile(c.getMobile());
-//    	cdto.setAddress(c.getAddress());
-//    	return c==null?null:cdto;
-    	
-    	Util.stampa(this.toString());
-    	return null;
+    public DisciplinaInsertDTO getByName(String nome) {
+    	return disciplinaMapper.convertEntityToDto(this.disciplinaRepository.findByNome(nome).orElse(null));
     }
 
     public long count() {

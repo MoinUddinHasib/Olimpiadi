@@ -2,7 +2,7 @@ package it.solvingteam.olimpiadi.dto;
 
 public class AtletaGaraDTO {
 	
-	private String id;
+	private String ida;
 	
 	private String idg;
 	
@@ -12,12 +12,14 @@ public class AtletaGaraDTO {
 	
 	private String stato;
 	
-	public String getId() {
-		return id;
+	private String posizione_in_classifica;;
+	
+	public String getIda() {
+		return ida;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setIda(String ida) {
+		this.ida = ida;
 	}
 
 	public String getIdg() {
@@ -50,6 +52,14 @@ public class AtletaGaraDTO {
 
 	public void setStato(String stato) {
 		this.stato = stato;
+	}
+
+	public String getPosizione_in_classifica() {
+		return posizione_in_classifica;
+	}
+
+	public void setPosizione_in_classifica(String posizione_in_classifica) {
+		this.posizione_in_classifica = posizione_in_classifica;
 	}
 
 }

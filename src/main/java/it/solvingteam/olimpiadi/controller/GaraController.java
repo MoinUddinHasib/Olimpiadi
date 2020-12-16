@@ -19,7 +19,9 @@ import it.solvingteam.olimpiadi.dto.AtletaGaraDTO;
 import it.solvingteam.olimpiadi.dto.DisciplinaInsertDTO;
 import it.solvingteam.olimpiadi.dto.GaraInsertDTO;
 import it.solvingteam.olimpiadi.dto.GaraSearchFilterDTO;
-import it.solvingteam.olimpiadi.service.AtletaService;
+import it.solvingteam.olimpiadi.model.AtletaGara;
+import it.solvingteam.olimpiadi.model.Gara;
+import it.solvingteam.olimpiadi.service.AtletaGaraService;
 import it.solvingteam.olimpiadi.service.DisciplinaService;
 import it.solvingteam.olimpiadi.service.GaraService;
 
@@ -31,25 +33,71 @@ public class GaraController {
     private GaraService garaService;
 	
 	@Autowired
-    private AtletaService atletaService;
-	
+    private AtletaGaraService atletaGaraService;
+		
 	@Autowired
     private DisciplinaService disciplinaService;
 	
-    @GetMapping("autorizza/{id}")
+    @GetMapping("delete/{id}")
+    public String delete(@PathVariable("id") Integer id, Model model) {
+    	GaraInsertDTO garaDTO = garaService.getById(id);
+        model.addAttribute("GaraInsertDTO",garaDTO);
+        return "gara/delete";
+    }
+    
+    @PostMapping("delete/{id}")
+    public String delete(@PathVariable("id") Integer idg){
+    	atletaGaraService.delete(idg);
+        return "redirect:/gara/";
+    }
+	
+    @GetMapping("update/{id}")
     public String update(@PathVariable("id") Integer id, Model model) {
-//    	CustomerInsertDto customer = customerService.getById(id);
-//        model.addAttribute("customerUpdateModel",customer);
+    	GaraInsertDTO garaDTO = garaService.getById(id);
+    	garaDTO.setDisciplinaId(disciplinaService.getByName(garaDTO.getDisciplinaId()).getId());
+        model.addAttribute("garaUpdate",garaDTO);
+        return "gara/update";
+    }
+    
+    @PostMapping("update/{id}")
+    public String update(@Valid @ModelAttribute("garaUpdate") GaraInsertDTO garaDTO, BindingResult bindingResult, @PathVariable("id") Integer id, Model model){
+        if (bindingResult.hasErrors()) {
+        	model.addAttribute("garaUpdate",garaDTO);
+            return "gara/update";
+        } else {
+        	garaDTO.setId(id.toString());
+        	if(garaDTO.getData().isEmpty()) {
+        		garaDTO.setStato(Gara.Stato.CREATA.toString());
+        	} else {
+        		garaDTO.setStato(Gara.Stato.IN_CALENDARIO.toString());
+        	}
+        	garaService.update(garaDTO);
+            return "redirect:/gara/";
+        }
+    }
+	
+    @GetMapping("autorizza/{ida}/{idg}")
+    public String autorizza(@PathVariable("ida") Integer ida, @PathVariable("idg") Integer idg, Model model) {
+    	AtletaGaraDTO agDTO= atletaGaraService.getByDoubleId(ida, idg);
+    	agDTO.setStato(AtletaGara.Stato.APPROVATO.toString());
 
-//    	System.err.println(id);
-//        return "redirect:/gara/show/"+idg;
-    	return "redirect:/gara/";
+    	atletaGaraService.update(agDTO);
+        return "redirect:/gara/show/"+idg;
+    }
+    
+    @GetMapping("nonautorizza/{ida}/{idg}")
+    public String nonautorizza(@PathVariable("ida") Integer ida, @PathVariable("idg") Integer idg, Model model) {
+    	AtletaGaraDTO agDTO= atletaGaraService.getByDoubleId(ida, idg);
+    	agDTO.setStato(AtletaGara.Stato.DISAPPROVATO.toString());
+
+    	atletaGaraService.update(agDTO);
+        return "redirect:/gara/show/"+idg;
     }
 	
     @GetMapping("show/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
     	GaraInsertDTO garadto = garaService.getById(id);
-    	List<AtletaGaraDTO> atletig= atletaService.findAtletaGaraByGaraId(id);
+    	List<AtletaGaraDTO> atletig= atletaGaraService.findAtletaGaraByGaraId(id);
     	
     	model.addAttribute("atletig", atletig);
         model.addAttribute("gara",garadto);
@@ -64,6 +112,7 @@ public class GaraController {
     		model.addAttribute("discipline", alldiscipline);
             return "gara/crea";
         } else {
+        	garainsertDTO.setStato(Gara.Stato.CREATA.toString());
         	garaService.insert(garainsertDTO);
             return "redirect:/gara/";
         }
