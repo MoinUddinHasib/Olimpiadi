@@ -98,9 +98,8 @@ public class GaraService {
     	String data = garaInsertDTO.getData();
     	String stato = garaInsertDTO.getStato();
     	Gara gara = new Gara();
-    	if(id!=null) {
-    		gara.setId(Integer.parseInt(id));
-    	}
+
+    	gara.setId(Integer.parseInt(id));
     	gara.setNumero_partecipanti(numero_partecipanti);
     	gara.setDisciplina(disciplinaRepository.findById(Integer.parseInt(disciplinaId)).orElse(null));
     	gara.setModificatore(Integer.parseInt(modificatore));
@@ -113,7 +112,6 @@ public class GaraService {
 
     	gara.setStato(Gara.Stato.valueOf(stato));
         return this.garaRepository.save(gara);
-
     }
 
     public GaraInsertDTO getById(Integer id) {

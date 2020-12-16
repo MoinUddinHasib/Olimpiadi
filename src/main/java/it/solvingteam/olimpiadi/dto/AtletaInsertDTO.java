@@ -4,7 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 public class AtletaInsertDTO extends UtenteInsertDTO {
 	
-	private String rappresentante;
+	private String rappresentanteId;
 	
 	@NotEmpty(message = "Selezionare almeno la prima disciplina")
 	private String disciplinaId1;
@@ -23,12 +23,12 @@ public class AtletaInsertDTO extends UtenteInsertDTO {
 	
 	private String stato;
 
-	public String getRappresentante() {
-		return rappresentante;
+	public String getRappresentanteId() {
+		return rappresentanteId;
 	}
 
-	public void setRappresentante(String rappresentante) {
-		this.rappresentante = rappresentante;
+	public void setRappresentanteId(String rappresentanteId) {
+		this.rappresentanteId = rappresentanteId;
 	}
 
 	public String getDisciplinaId1() {

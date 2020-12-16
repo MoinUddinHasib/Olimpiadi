@@ -8,6 +8,9 @@
 	<div th:insert="navbar.html :: navbar"></div>
 <main class="container">
 <h1>Dashboard Gare</h1>
+
+	 <div style="color:red" th:text="${errorMessage}" />
+			
 <a th:href="@{/gara/crea}" class="btn btn-info">Crea Gara</a>
 <div>
     <form action="#" th:action="@{/gara}" th:object="${searchFilters}" method="get">
@@ -46,9 +49,9 @@
         <td th:text="${gara.modificatore}"></td>
                 
         <td><a th:href="@{/gara/show/{id}(id=${gara.id})}" class="btn btn-info">Show</a>
-        <a th:href="@{/gara/update/{id}(id=${gara.id})}" class="btn btn-info">Edit</a>
-        <a th:href="@{/gara/delete/{id}(id=${gara.id})}" class="btn btn-info">Delete</a>
-        <a th:href="@{/gara/avvia/{id}(id=${gara.id})}" class="btn btn-info">Avvia</a></td>
+        <a th:href="@{/gara/update/{id}(id=${gara.id})}" class="btn btn-info" th:if="${gara.stato != 'TERMINATA'}">Edit</a>
+        <a th:href="@{/gara/delete/{id}(id=${gara.id})}" class="btn btn-info" th:if="${gara.stato != 'TERMINATA'}">Delete</a>
+        <a th:href="@{/gara/avvia/{id}(id=${gara.id})}" class="btn btn-info" th:if="${gara.stato == 'IN_CALENDARIO'}">Avvia</a></td>
 
     </tr>
     <a th:href="@{/gara/home}" class="btn btn-secondary mb-3">Back</a>

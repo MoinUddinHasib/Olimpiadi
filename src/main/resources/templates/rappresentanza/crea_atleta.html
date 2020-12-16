@@ -6,7 +6,9 @@
 </head>
 <body th:with="due=${false},tre=${false}">
 <h1 class="container">Crea Atleta</h1>
-<form action="#" th:action="@{/atleta/insert}" method="post" th:object="${AtletaInsertDTO}" class="container">
+<form action="#" th:action="@{/rappresentanza/creaAtleta}" method="post" th:object="${AtletaInsertDTO}" class="container">
+
+	<input type="hidden" th:field="*{rappresentanteId}" class="form-control">
 
 	<p>Nome: <input type="text" th:field="*{nome}" class="form-control"/></p>
     <p style="color:red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="container"></p>

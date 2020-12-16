@@ -63,5 +63,10 @@ public class AtletaGaraService {
     	}
         this.garaRepository.delete(garaRepository.findById(idg).orElse(null));
     }
+    
+	public List<AtletaGaraDTO> findAtletaGaraAutorizzatiByGaraId(Integer id) {
+		List<AtletaGara> Atletig = this.atletaGaraRepository.findAllAtletiGaraApprovatiByGaraId(id);
+		return atletaGaraMapper.convertEntityToDto(Atletig);
+	}
 
 }

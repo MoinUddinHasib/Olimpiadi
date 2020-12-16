@@ -27,7 +27,7 @@ public class AtletaMapper extends AbstractMapper<Atleta, AtletaInsertDTO> {
         atletaDTO.setUsername(entity.getUsername());
         atletaDTO.setPassword(entity.getPassword());
         atletaDTO.setRuolo(entity.getRuolo().toString());
-        atletaDTO.setRappresentante(entity.getRappresentante().getUsername());
+        atletaDTO.setRappresentanteId(entity.getRappresentante().getUsername());
         
         List<Disciplina> discipline=new ArrayList<>(entity.getDiscipline());
         int size= discipline.size();
