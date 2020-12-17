@@ -1,6 +1,14 @@
 package it.solvingteam.olimpiadi.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +17,7 @@ import it.solvingteam.olimpiadi.dto.AtletaGaraDTO;
 import it.solvingteam.olimpiadi.mapper.AtletaGaraMapper;
 import it.solvingteam.olimpiadi.model.AtletaGara;
 import it.solvingteam.olimpiadi.model.AtletaGaraId;
+import it.solvingteam.olimpiadi.model.Gara;
 import it.solvingteam.olimpiadi.repository.AtletaGaraRepository;
 import it.solvingteam.olimpiadi.repository.AtletaRepository;
 import it.solvingteam.olimpiadi.repository.GaraRepository;
@@ -27,6 +36,9 @@ public class AtletaGaraService {
 	
 	@Autowired
     private AtletaGaraMapper atletaGaraMapper;
+	
+    @Autowired
+    private EntityManager entityManager;
 	
 	public List<AtletaGaraDTO> findAtletaGaraByGaraId(Integer id) {
 		List<AtletaGara> Atletig = this.atletaGaraRepository.findAllAtletaGaraByGaraId(id);
@@ -68,5 +80,6 @@ public class AtletaGaraService {
 		List<AtletaGara> Atletig = this.atletaGaraRepository.findAllAtletiGaraApprovatiByGaraId(id);
 		return atletaGaraMapper.convertEntityToDto(Atletig);
 	}
+
 
 }

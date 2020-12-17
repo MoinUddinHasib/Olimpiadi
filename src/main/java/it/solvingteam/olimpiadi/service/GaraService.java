@@ -117,5 +117,33 @@ public class GaraService {
     public GaraInsertDTO getById(Integer id) {
     	return garaMapper.convertEntityToDto(this.garaRepository.findById(id).orElse(null));
     }
+    
+	public List<GaraInsertDTO> findByIdAtletaAndDiscipline(Integer idd1, Integer idd2, Integer idd3) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Gara> cq = cb.createQuery(Gara.class);
+
+        Root<Gara> gara = cq.from(Gara.class);
+        List<Predicate> predicates = new ArrayList<>();
+        
+        predicates.add(
+        		cb.notEqual(
+        				gara.get("stato"), 
+        				Gara.Stato.TERMINATA)
+        		);
+        
+        predicates.add(cb.or(cb.equal(gara.get("disciplina").get("id"), idd1 )));
+
+        if (idd2 != null) {       	
+            predicates.add(cb.or(cb.equal(gara.get("disciplina").get("id"), idd2 )));
+        }
+        
+        if (idd3 != null) {
+        	predicates.add(cb.or(cb.equal(gara.get("disciplina").get("id"), idd3 )));
+        }
+
+
+        cq.where(predicates.toArray(new Predicate[0]));
+        return garaMapper.convertEntityToDto(entityManager.createQuery(cq).getResultList());
+	}
 
 }

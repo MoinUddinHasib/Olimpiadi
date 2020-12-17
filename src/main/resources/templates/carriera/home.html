@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <title>Gestione Carriera</title>
+<head th:insert="header.html :: header">
+<meta charset="UTF-8">
+</head>
+<body>
+	
+<div class="container" >
+	<div th:insert="navbar.html :: navbar"></div>
+<h1>Gestione Carriera</h1>
+
+<p><a th:href="@{/carriera/}" class="btn btn-primary mb-3">Partecipa Gara</a></p>
+
+<p><a th:href="@{/carriera/ritirati}" class="btn btn-primary mb-3">Ritirati</a></p>
+
+<p><a th:href="@{/carriera/medagliere}" class="btn btn-primary mb-3">Medagliere</a></p>
+
+<a th:href="@{/carriera/back}" class="btn btn-secondary mb-3">Back</a>
+
+</div>
+</body>
+</html>

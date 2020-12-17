@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="container" >
+	<div th:insert="navbar.html :: navbar"></div>
 <h1>Gestione Rappresentanza</h1>
 
 <p><a th:href="@{/rappresentanza/creaRappresentanteNazione}" class="btn btn-primary mb-3">Registra Rappresentante</a></p>
@@ -19,7 +20,9 @@
 <p><a th:href="@{/rappresentanza/medagliere}" class="btn btn-primary mb-3">Medagliere</a></p>
 
 </span>
-
+	
+	<a th:href="@{/gara/back}" class="btn btn-secondary mb-3">Back</a>
+	
 </div>
 </body>
 </html>

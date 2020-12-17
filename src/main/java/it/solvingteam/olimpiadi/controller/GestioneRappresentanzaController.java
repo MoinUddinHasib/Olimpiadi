@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +17,6 @@ import it.solvingteam.olimpiadi.dto.AtletaInsertDTO;
 import it.solvingteam.olimpiadi.dto.AtletaSearchFilterDTO;
 import it.solvingteam.olimpiadi.dto.DisciplinaInsertDTO;
 import it.solvingteam.olimpiadi.model.Atleta;
-import it.solvingteam.olimpiadi.model.RappresentanteNazione;
 import it.solvingteam.olimpiadi.model.Utente;
 import it.solvingteam.olimpiadi.repository.RappresentanteNazioneRepository;
 import it.solvingteam.olimpiadi.service.AtletaService;
@@ -65,8 +63,10 @@ public class GestioneRappresentanzaController {
 		List<DisciplinaInsertDTO> alldiscipline = disciplinaService.findAll();
 		model.addAttribute("discipline", alldiscipline);
 		AtletaInsertDTO adto = new AtletaInsertDTO();
-		RappresentanteNazione rn = (RappresentanteNazione) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get();
-		adto.setRappresentanteId(rn.getId().toString());
+//		RappresentanteNazione rn = (RappresentanteNazione) SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get();
+//		adto.setRappresentanteId(rn.getId().toString());
+//		model.addAttribute("due",false);
+//		model.addAttribute("tre",false);
 		model.addAttribute("atletaInsertDTO", adto);
         return "rappresentanza/crea_atleta";
     }

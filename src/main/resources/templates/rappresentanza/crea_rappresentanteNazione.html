@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1 class="container">Crea Rappresentante Nazione</h1>
+	<div th:insert="navbar.html :: navbar" class="container"></div>
 <form action="#" th:action="@{/rappresentanteNazione/insert}" method="post" th:object="${RappresentanteNazioneInsertDTO}" class="container">
 
 	<p>Nome: <input type="text" th:field="*{nome}" class="form-control"/></p>

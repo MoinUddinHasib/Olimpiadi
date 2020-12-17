@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1 class="container">Crea Gara</h1>
+	<div th:insert="navbar.html :: navbar"></div>
 <form action="#" th:action="@{/gara/crea}" method="post" th:object="${garaInsertDTO}" class="container">
 
 	<p>Numero Partecipanti: <input type="number" th:field="*{numero_partecipanti}" class="form-control"/></p>

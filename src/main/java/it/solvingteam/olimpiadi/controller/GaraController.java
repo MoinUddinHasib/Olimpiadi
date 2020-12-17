@@ -78,10 +78,9 @@ public class GaraController {
     			case 2: a.setArgento(a.getArgento()+1); break;
     			case 3: a.setBronzo(a.getBronzo()+1); break;
     		}
-    		atletaService.update(a);//TODO
+    		atletaService.update(a);
     	}
-    	
-    	
+    	    	
     	garaDTO.setDisciplinaId(disciplinaService.getByName(garaDTO.getDisciplinaId()).getId());
     	garaDTO.setStato(Gara.Stato.TERMINATA.toString());
     	garaService.update(garaDTO);
